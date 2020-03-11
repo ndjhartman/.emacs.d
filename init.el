@@ -6,8 +6,8 @@
 ;; Copyright (C) 2019 Mingde (Matthew) Zeng
 ;; Created: Thu Mar 14 10:15:28 2019 (-0400)
 ;; Version: 2.0.0
-;; Last-Updated: Thu Feb  6 16:27:57 2020 (-0500)
-;;           By: Mingde (Matthew) Zeng
+;; Last-Updated: Tue Mar 10 21:24:22 2020 (-0400)
+;;           By: Nathan Hartman
 ;; URL: https://github.com/MatthewZMD/.emacs.d
 ;; Keywords: M-EMACS .emacs.d init
 ;; Compatibility: emacs-version >= 26.1
@@ -210,7 +210,7 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
 
 (require 'init-eww)
 
-(require 'init-mu4e)
+;; (require 'init-mu4e)
 
 (require 'init-tramp)
 
@@ -226,6 +226,11 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
 
 (require 'init-zone)
 
+(require 'init-evil)
+
 (provide 'init)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
+
+(setq user-full-name "Nathan Hartman")
+(setq user-mail-address "hnathan918@gmail.com")
