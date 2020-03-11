@@ -6,7 +6,7 @@
 ;; Copyright (C) 2019 Mingde (Matthew) Zeng
 ;; Created: Mon Mar 18 14:20:54 2019 (-0400)
 ;; Version: 2.0.0
-;; Last-Updated: Mon Jan 27 01:03:10 2020 (-0500)
+;; Last-Updated: Wed Mar 11 13:39:04 2020 (+0000)
 ;;           By: Mingde (Matthew) Zeng
 ;; URL: https://github.com/MatthewZMD/.emacs.d
 ;; Keywords: M-EMACS .emacs.d constants
@@ -106,7 +106,7 @@
 
 (defconst *eaf-env*
   (and *sys/linux* *sys/gui* *python3*
-       (executable-find "pip")
+       (or (executable-find "pip") (executable-find "pip3"))
        (not (equal (shell-command-to-string "pip freeze | grep '^PyQt\\|PyQtWebEngine'") "")))
   "Check basic requirements for EAF to run.")
 ;; -Consts

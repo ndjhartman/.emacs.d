@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 6
+;;     Update #: 29
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,16 +47,12 @@
 ;;; Code:
 ;; Set up package.el to work with MELPA
 
-
-
-(eval-when-compile
-  (require 'package))
-
-;; Enable Evil
-(require 'evil)
-(evil-mode 1)
+(use-package evil
+  :config
+  (evil-mode 1)
+  :custom
+  (evil-search-module 'swiper-isearch))
 
 (provide 'init-evil)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-evil.el ends here
