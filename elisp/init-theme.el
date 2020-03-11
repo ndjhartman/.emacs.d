@@ -6,8 +6,8 @@
 ;; Copyright (C) 2019 Mingde (Matthew) Zeng
 ;; Created: Thu Mar 14 17:11:56 2019 (-0400)
 ;; Version: 2.0.0
-;; Last-Updated: Mon Jan  6 14:32:34 2020 (-0500)
-;;           By: Mingde (Matthew) Zeng
+;; Last-Updated: Tue Mar 10 22:02:18 2020 (-0400)
+;;           By: Nathan Hartman
 ;; URL: https://github.com/MatthewZMD/.emacs.d
 ;; Keywords: M-EMACS .emacs.d doom-themes doom-modeline
 ;; Compatibility: emacs-version >= 26.1
@@ -43,14 +43,12 @@
 
 ;; DoomThemes
 (use-package doom-themes
-  :custom-face
-  (cursor ((t (:background "BlanchedAlmond"))))
   :config
   ;; flashing mode-line on errors
   (doom-themes-visual-bell-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config)
-  (load-theme 'doom-one t))
+  (load-theme 'doom-acario-light t))
 ;; -DoomThemes
 
 ;; DoomModeline
