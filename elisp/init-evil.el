@@ -10,7 +10,7 @@
 ;; Package-Requires: ()
 ;; Last-Updated:
 ;;           By:
-;;     Update #: 29
+;;     Update #: 75
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -49,9 +49,17 @@
 
 (use-package evil
   :config
+  (evil-set-initial-state 'dashboard-mode 'emacs)
+  (evil-set-initial-state 'eaf-mode 'emacs)
+  (evil-set-initial-state 'term-mode 'emacs)
   (evil-mode 1)
   :custom
   (evil-search-module 'swiper-isearch))
+
+(defun evil-insert-blank-line ()
+  (evil-open-above 1)
+
+  )
 
 (provide 'init-evil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
