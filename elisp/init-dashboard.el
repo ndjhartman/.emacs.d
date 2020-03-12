@@ -6,7 +6,7 @@
 ;; Copyright (C) 2019 Mingde (Matthew) Zeng
 ;; Created: Thu Mar 14 17:21:46 2019 (-0400)
 ;; Version: 2.0.0
-;; Last-Updated: Tue Mar 10 22:17:18 2020 (-0400)
+;; Last-Updated: Thu Mar 12 18:37:38 2020 (+0000)
 ;;           By: Nathan Hartman
 ;; URL: https://github.com/MatthewZMD/.emacs.d
 ;; Keywords: M-EMACS .emacs.d dashboard
@@ -42,15 +42,14 @@
   :demand
   :diminish (dashboard-mode page-break-lines-mode)
   :bind
-  (("C-z d" . open-dashboard)
+  (("C-x C-d" . open-dashboard)
    :map dashboard-mode-map
    (("n" . dashboard-next-line)
     ("p" . dashboard-previous-line)
     ("N" . dashboard-next-section)
     ("F" . dashboard-previous-section)))
   :custom
-  (dashboard-banner-logo-title "Close the world. Open the nExt.")
-  (dashboard-startup-banner (expand-file-name "images/dog.png" user-emacs-directory))
+  ;(dashboard-startup-banner (expand-file-name "images/dog.png" user-emacs-directory))
   (dashboard-items '((recents  . 7)
                      (bookmarks . 7)
                      (agenda . 5)))
@@ -61,7 +60,7 @@
    (if (featurep 'all-the-icons)
        `(((,(all-the-icons-octicon "mark-github" :height 1.1 :v-adjust -0.05)
            "M-EMACS" "Browse M-EMACS Homepage"
-           (lambda (&rest _) (browse-url "https://github.com/MatthewZMD/.emacs.d")))
+           (lambda (&rest _) (browse-url "https://github.com/ndjhartman/.emacs.d")))
           (,(all-the-icons-fileicon "elisp" :height 1.0 :v-adjust -0.1)
            "Configuration" "" (lambda (&rest _) (edit-configs)))
           (,(all-the-icons-faicon "cogs" :height 1.0 :v-adjust -0.1)
@@ -73,9 +72,41 @@
   :custom-face
   (dashboard-banner-logo-title ((t (:family "Love LetterTW" :height 123))))
   :config
+
+
   (dashboard-modify-heading-icons '((recents . "file-text")
                                     (bookmarks . "book")))
   (dashboard-setup-startup-hook)
+
+  ;; Populate dashboard
+  (defun friendly-random-choice (messages)
+    "Chooses random element from list"
+    (let* ((size (length messages))
+	   (index (random size)))
+      (nth index messages)))
+
+  (defun read-lines (filePath)
+    "Return a list of lines of a file at filePath."
+    (with-temp-buffer
+      (insert-file-contents filePath)
+      (split-string (buffer-string) "\n" t)))
+
+  (defun friendly-get-motd ()
+    "Returns a random friendly greeting"
+    (let* ((messagelist (expand-file-name "images/messagelist" user-emacs-directory))
+	    (messagelist (read-lines messagelist))
+	    (motd (friendly-random-choice messagelist)))
+       (setq dashboard-banner-logo-title motd)))
+
+  (defun friendly-get-dotd ()
+    "Returns the filename of a friendly dog to display on the dashboard"
+    (let* ((doglist (expand-file-name "images/doglist" user-emacs-directory))
+	   (doglist (read-lines doglist))
+	   (dotd (friendly-random-choice doglist)))
+      (setq dashboard-startup-banner (expand-file-name dotd "/home/nhartman/.emacs.d/images/dogs/"))))
+
+  (friendly-get-motd)
+  (friendly-get-dotd)
   ;; Open Dashboard function
   (defun open-dashboard ()
     "Open the *dashboard* buffer and jump to the first widget."
